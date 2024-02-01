@@ -1,0 +1,1489 @@
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+ 
+import axios, { Axios } from 'axios';
+import parse from "html-react-parser";
+import { Link, useNavigate } from "react-router-dom";
+import {variables} from './Variables.js';
+import { FALSE } from 'sass';
+import MostViewed from './MostViwed.js';
+
+ 
+ 
+export default function Home() {
+
+  
+ 
+ 
+  const jsonUrl = 'https://menafn.com/updates/index/Athlethixnet_HomeEn_TrendingNews.json';
+
+
+  
+ 
+  const [JsonTrendingArray, setJsonTrendingArray] = React.useState([]);
+
+  
+  async function refda() {  
+    setNisLoading(true);
+ 
+    Get_Data();
+   
+  }
+ 
+  async function Get_Data(){
+ 
+    JsonTrendingArray.splice(0);  //to clear All data in your page
+
+   setNisLoading(true);
+
+   axios.get(jsonUrl)  
+
+         .then(function (response) {
+         setNisLoading( false);
+
+           console.log(response.data);
+       
+          
+     
+
+         for (let i in response.data) {
+         
+          JsonTrendingArray.push({
+        
+            news_title: response.data[i].news_title,
+            news_date:response.data[i].news_date,
+            news_imagename:variables.ImageStart + response.data[i].news_imagename  ,
+            link:response.data[i].link,
+            
+           Category:response.data[i].Category,
+          })
+          }
+    })      
+   }
+     
+
+  const [JsonFeatureArray, setJsonJsonFeatureArray] = React.useState([]);
+
+  const [JsonBusinessArray, setJsonJsonBusinessArray] = React.useState([]);
+
+  const [JsonFinanceArray, setJsonJsonFinanceArray] = React.useState([]);
+  
+  const [JsonVideosArray, setJsonVideosArray] = React.useState([]);
+  
+
+  const [JsonWhatsNewArray, setJsonJsonWhatsNewArray] = React.useState([]);
+   
+
+
+
+
+
+
+
+
+
+
+
+//Start  Trendy part
+
+const [StoryId1, setStoryId1] = useState();
+const [Title1, setTitle1] = useState();
+const [StoryId1Date, setStoryId1Date] = useState();
+const [Img1, setImg1] = useState();
+
+ 
+
+const [StoryId2, setStoryId2] = useState();
+const [Title2, setTitle2] = useState();
+const [StoryId2Date, setStoryId2Date] = useState();
+const [Img2, setImg2] = useState();
+
+const [StoryId3, setStoryId3] = useState();
+const [Title3, setTitle3] = useState();
+const [StoryId3Date, setStoryId3Date] = useState();
+const [Img3, setImg3] = useState();
+
+const [StoryId4, setStoryId4] = useState();
+const [Title4, setTitle4] = useState();
+const [StoryId4Date, setStoryId4Date] = useState();
+const [Img4, setImg4] = useState();
+
+const [StoryId5, setStoryId5] = useState();
+const [Title5, setTitle5] = useState();
+const [StoryId5Date, setStoryId5Date] = useState();
+const [Img5, setImg5] = useState();
+
+const [StoryId6, setStoryId6] = useState();
+const [Title6, setTitle6] = useState();
+const [StoryId6Date, setStoryId6Date] = useState();
+const [Img6, setImg6] = useState();
+
+  fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+
+
+
+//Part trendy
+
+ 
+//Part1
+setStoryId1( data[0].link );
+setStoryId1Date( data[0]. news_date);
+setTitle1(  data[0].news_title  );
+ setImg1(variables.ImageStart + data[0].news_imagename);
+//
+
+//Part2
+setStoryId2( data[1].link );
+setStoryId2Date( data[1]. news_date);
+setTitle2(  data[1].news_title  );
+ setImg2(variables.ImageStart + data[1].news_imagename);
+//
+//Part3
+setStoryId3( data[2].link );
+setStoryId3Date( data[2]. news_date);
+setTitle3(  data[2].news_title  );
+ setImg3(variables.ImageStart + data[2].news_imagename);
+//
+//Part4
+setStoryId4( data[3].link );
+setStoryId4Date( data[3]. news_date);
+setTitle4(  data[3].news_title  );
+ setImg4(variables.ImageStart + data[3].news_imagename);
+//
+//Part5
+setStoryId5( data[4].link );
+setTitle5(  data[4].news_title  );
+setStoryId5Date( data[4]. news_date);
+ setImg5(variables.ImageStart + data[4].news_imagename);
+//
+//Part6
+setStoryId6( data[5].link );
+setTitle6(  data[5].news_title  );
+setStoryId6Date( data[5]. news_date);
+ setImg6(variables.ImageStart + data[5].news_imagename);
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+ 
+ 
+
+ 
+// End  Trendy part
+
+ 
+
+
+
+
+
+//Start   Feature Part
+
+// feature part 
+const [StoryIdFeature1, setStoryIdFeature1] = useState();
+const [TitleF1, setTitleF1] = useState();
+const [ImgF1, setImgF1] = useState();
+
+const [StoryIdFeature2, setStoryIdFeature2] = useState();
+const [TitleF2, setTitleF2] = useState();
+const [ImgF2, setImgF2] = useState();
+
+const [StoryIdFeature3, setStoryIdFeature3] = useState();
+const [TitleF3, setTitleF3] = useState();
+const [ImgF3, setImgF3] = useState();
+
+//
+
+//  Feature part 
+ 
+
+
+ fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+
+
+
+//Part feature
+setStoryIdFeature1(data[0].link );
+setTitleF1(  data[0].news_title  );
+setImgF1(variables.ImageStart + data[0].news_imagename);
+
+
+setStoryIdFeature2(data[1].link );
+setTitleF2(  data[1].news_title  );
+setImgF2(variables.ImageStart + data[1].news_imagename);
+
+
+setStoryIdFeature3(data[2].link );
+setTitleF3(  data[2].news_title  );
+setImgF3(variables.ImageStart + data[2].news_imagename);
+
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+
+
+
+//End   Feature Part
+
+//Start Business part 
+const [B1StoryId, setB1StoryId] = useState();
+const [B1Date, setB1Date] = useState();
+const [TitleB1, setTitleB1] = useState();
+const [ImgB1, setImgB1] = useState();
+
+const [B22StoryId, setB2StoryId] = useState();
+const [B2Date, setB2Date] = useState();
+const [TitleB2, setTitleB2] = useState();
+const [ImgB2, setImgB2] = useState();
+
+
+const [B3StoryId, setB3StoryId] = useState();
+const [B3Date, setB3Date] = useState();
+const [TitleB3, setTitleB3] = useState();
+const [ImgB3, setImgB3] = useState();
+
+
+
+
+ fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+ 
+//  Business part 
+setB1StoryId(  data[1].link  );
+setTitleB1(  data[1].news_title  );
+setB1Date(data[1].news_Date);
+setImgB1(variables.ImageStart + data[1].news_imagename);
+ 
+setB2StoryId(  data[2].link  );
+setTitleB2(  data[1].news_date  );
+setTitleB2(  data[2].news_title  );
+setImgB2(variables.ImageStart + data[2].news_imagename);
+ 
+setB3StoryId(  data[3].link  );
+setTitleB3(  data[1].news_date  );
+setTitleB3(  data[3].news_title  );
+setImgB3(variables.ImageStart + data[3].news_imagename);
+
+
+ 
+
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+
+
+//End Business part 
+
+
+
+
+//Start   Finance Part
+
+
+const [Finance1Id, setFinance1Id] = useState();
+ 
+
+const [TitleFinance1, setTitleFinance1] = useState();
+const [ImgFinance1, setImgFinance1] = useState();
+//
+const [Finance2Id, setFinance2Id] = useState();
+const [TitleFinance2, setTitleFinance2] = useState();
+const [ImgFinance2, setImgFinance2] = useState();
+ 
+
+//
+
+//  Feature part 
+ 
+
+
+ fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+
+
+
+//Part Finance
+ setFinance1Id(data[0].link);
+
+setTitleFinance1(  data[0].news_title  );
+setImgFinance1(variables.ImageStart + data[0].news_imagename);
+ 
+//
+setFinance2Id(data[1].link);
+setTitleFinance2(  data[1].news_title  );
+setImgFinance2(variables.ImageStart + data[1].news_imagename);
+ 
+ 
+
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+
+
+
+//End   Feature Part
+
+
+
+
+//Start Videos part 
+ 
+const [VideoID1, setVideoID1] = useState();
+const [TitleV1, setTitleV1] = useState();
+const [ImgV1, setImgV1] = useState();
+//
+const [VideoID2, setVideoID2] = useState();
+const [TitleV2, setTitleV2] = useState();
+const [ImgV2, setImgV2] = useState();
+//
+const [VideoID3, setVideoID3] = useState();
+const [TitleV3, setTitleV3] = useState();
+const [ImgV3, setImgV3] = useState();
+//
+const [VideoID4, setVideoID4] = useState();
+const [TitleV4, setTitleV4] = useState();
+const [ImgV4, setImgV4] = useState();
+
+
+
+ fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+//Videos Part
+setVideoID1(  data[1].link  );
+setTitleV1(  data[1].news_title  );
+setImgV1(variables.ImageStart + data[1].news_imagename);
+ //
+setVideoID2(  data[2].link  );
+setTitleV2(  data[2].news_title  );
+setImgV2(variables.ImageStart + data[2].news_imagename);
+ 
+ //
+ setVideoID3(  data[3].link  );
+setTitleV3(  data[3].news_title  );
+setImgV3(variables.ImageStart + data[3].news_imagename);
+
+ //
+ setVideoID4(  data[4].link  );
+setTitleV4(  data[4].news_title  );
+setImgV4(variables.ImageStart + data[4].news_imagename);
+
+
+ 
+
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+
+
+//End Videos part 
+
+
+
+
+
+
+
+
+
+
+
+
+ //Start Most Part
+ const [MostId1, setMostId1] = useState();
+ const [TitleMost1, setTitleMost1] = useState();
+ const [MostDate1, setMostDate1] = useState();
+ const [ImgMost1, setImgMost1] = useState();
+
+ const [MostId2, setMostId2] = useState();
+ const [TitleMost2, setTitleMost2] = useState();
+ const [MostDate2, setMostDate2] = useState();
+ const [ImgMost2, setImgMost2] = useState();
+
+ const [MostId3, setMostId3] = useState();
+ const [TitleMost3, setTitleMost3] = useState();
+ const [MostDate3, setMostDate3] = useState();
+ const [ImgMost3, setImgMost3] = useState();
+
+ const [MostId4, setMostId4] = useState();
+ const [TitleMost4, setTitleMost4] = useState();
+ const [MostDate4, setMostDate4] = useState();
+ const [ImgMost4, setImgMost4] = useState();
+
+
+ const [MostId5, setMostId5] = useState();
+ const [TitleMost5, setTitleMost5] = useState();
+ const [MostDate5, setMostDate5] = useState();
+ const [ImgMost5, setImgMost5] = useState();
+ 
+
+
+ fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+ 
+  
+
+
+ 
+
+// ***** Part Most
+ //Part1
+ setMostId1(data[1].link);
+setTitleMost1(  data[1].news_title  );
+setMostDate1(  data[1].news_date);
+setImgMost1(variables.ImageStart + data[1].news_imagename);
+//
+//Part2
+setMostId2(data[2].link);
+setTitleMost2(  data[2].news_title  );
+setMostDate2(  data[2].news_date);
+setImgMost2(variables.ImageStart + data[2].news_imagename);
+//
+//Part3
+setMostId3(data[3].link);
+setTitleMost3(  data[3].news_title  );
+setMostDate3(  data[3].news_date);
+setImgMost3(variables.ImageStart + data[3].news_imagename);
+//
+//Part4
+setMostId4(data[4].link);
+setTitleMost4(  data[4].news_title  );
+setMostDate4(  data[4].news_date);
+setImgMost4(variables.ImageStart + data[4].news_imagename);
+//
+//Part5
+setMostId5(data[5].link);
+setTitleMost5(  data[5].news_title  );
+setMostDate5(  data[5].news_date);
+setImgMost5(variables.ImageStart + data[5].news_imagename);
+
+ 
+//
+
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+
+
+ //End Most Part
+
+ 
+
+ 
+
+ 
+
+
+//Start whats news Part
+const [WhatsID1, setWhatsID1] = useState();
+const [TitleW1, setTitleW1] = useState();
+const [ImgW1, setImgW1] = useState();
+
+const [WhatsID2, setWhatsID2] = useState();
+const [TitleW2, setTitleW2] = useState();
+const [ImgW2, setImgW2] = useState();
+
+const [WhatsID3, setWhatsID3] = useState();
+const [TitleW3, setTitleW3] = useState(); 
+const [ImgW3, setImgW3] = useState();
+
+const [WhatsID4, setWhatsID4] = useState();
+const [TitleW4, setTitleW4] = useState();
+const [ImgW4, setImgW4] = useState();
+
+const [WhatsID5, setWhatsID5] = useState();
+const [TitleW5, setTitleW5] = useState();
+const [ImgW5, setImgW5] = useState();
+
+ 
+ 
+ 
+
+ console.log(jsonUrl);
+
+  fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+ 
+
+
+  
+
+
+// Whts new part
+setWhatsID1(data[1].link );
+setTitleW1(  data[1].news_title  );
+setImgW1(variables.ImageStart + data[1].news_imagename);
+
+setWhatsID2(data[2].link );
+setTitleW2(  data[2].news_title  );
+setImgW2(variables.ImageStart + data[2].news_imagename);
+
+setWhatsID3(data[3].link );
+setTitleW3(  data[3].news_title  );
+setImgW3(variables.ImageStart + data[3].news_imagename);
+
+setWhatsID4(data[4].link );
+setTitleW4(  data[4].news_title  );
+setImgW4(variables.ImageStart + data[4].news_imagename);
+
+setWhatsID5(data[5].link );
+setTitleW5(  data[5].news_title  );
+setImgW5(variables.ImageStart + data[5].news_imagename);
+ 
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+ 
+  
+
+      
+
+
+//Start  Opinion part
+const [OpinionId1, setOpinionId1] = useState();
+const [TitleOpinion1, setTitleOpinion1] = useState();
+const [ImgOpinion1, setImgOpinion1] = useState();
+
+const [OpinionId2, setOpinionId2] = useState();
+const [TitleOpinion2, setTitleOpinion2] = useState();
+const [ImgOpinion2, setImgOpinion2] = useState();
+ 
+
+
+  fetch(jsonUrl)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      
+
+ 
+ 
+
+
+
+//Part Opinion
+setOpinionId1(  data[0].link  );
+setTitleOpinion1(  data[0].news_title  );
+ setImgOpinion1(variables.ImageStart + data[0].news_imagename);
+//
+
+//Part2
+setOpinionId2(  data[1].link  );
+setTitleOpinion2(  data[1].news_title  );
+ setImgOpinion2(variables.ImageStart + data[1].news_imagename);
+ 
+ 
+
+
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+ 
+ 
+
+ 
+// End  Opinion part
+
+
+
+
+    const [isLoading,setNisLoading] = useState(false);
+    const navigate = useNavigate();
+    const usenavigate=useNavigate();
+   
+
+    //Start Ads Part
+ 
+
+   
+
+
+
+
+ 
+      
+    
+ 
+  
+  
+    
+
+
+         
+
+     
+   
+   
+      useEffect(() => {
+      
+       
+        setNisLoading(true);
+   
+        refda();
+           },[] )
+
+
+           
+   
+           return (
+          <>
+
+
+  
+
+  <div className='backgroundcolor'> 
+        <div className='container  '>
+
+    
+
+
+
+
+
+
+        <div className="row">
+        <div className="col-lg-8">
+          <div className="treding-post-news mt-40">
+            <div className="section-title">
+              <h3 className="title ">Trending News</h3>
+            </div>
+            <div className="row">
+
+              <div className="col-md-6">
+                <div className="post-news-item-2">
+                  <div className="post-news-thumb">
+                  
+                    <a  href={ StoryId1 }>
+                    <img  src={Img1} alt="gallery" />
+                    </a>
+                  </div> 
+                  <div className="post-news-content">
+                    <h3 className="title "><a href={ StoryId1 } >{Title1}</a></h3>
+                    <p className='Redcolorhover'>The property, complete with 30-seat screening from room, a 100-seat amphitheater and a swimming pond with sandy shower…</p>
+                    <div className="meta-post-2-style">
+                      <div className="meta-post-categores">
+                        <a href="#">TECHNOLOGY</a>
+                      </div>
+                      <div className="meta-post-date">
+                        <span>{StoryId1Date}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="col-md-6">
+               <div>
+               {JsonTrendingArray.map(da=>     
+  
+  <div key= {da.news_title}  > 
+  
+                 
+                      <div className="post-gallery-style-2">
+                          <div className="post-gallery-thumb">
+                          <a  href={ da.link }>
+                    <img width={100} height={58}  src={da.news_imagename} alt="gallery" />
+                    </a>
+                          </div>
+                          <div className="post-gallery-content">
+                            <h5 className="title"><a    href={ da.link }  tabIndex={-1}>{da.news_title}</a></h5>
+                            <div className="meta-post-2-style">
+                            
+                           
+                                    <span className=''>{da.Category}</span>
+                               
+                            </div>
+                          </div>
+                        </div>
+  
+                  </div>
+                  
+                    )}
+         
+               </div>
+                
+             
+{/* end of mapping trendy array */}
+
+              </div>
+              </div>
+          </div>
+
+              
+            
+          <div className="feature-news-box mt-40">
+            <div className="section-title">
+              <h3 className="title">Feature News</h3>
+            </div>
+            <div className="row feature-slider slick-initialized slick-slider">
+              
+              <div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: '2794px', transform: 'translate3d(-762px, 0px, 0px)'}}><div className="col-lg-4 slick-slide slick-cloned" data-slick-index={-3} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                        
+                     
+                        <a  href={ StoryIdFeature1 }>
+                            <img  width={250} height={125} src={ImgF1} alt="gallery" />
+                    </a>
+                      </div>
+                      <div className="">
+                       
+                        <h3 className="title "><a href={ StoryIdFeature1 } >{TitleF1}</a></h3>
+                      </div>
+                    </div>
+                  </div><div className="col-lg-4 slick-slide slick-cloned" data-slick-index={-2} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                      <a  href={ StoryIdFeature2 }>
+                            <img  width={250} height={125} src={ImgF2} alt="gallery" />
+                    </a>
+                      
+                      </div>
+                      <div className="feature-news-content">
+                        <p>{TitleF2} </p>
+                      </div>
+                    </div>
+                  </div><div className="col-lg-4 slick-slide slick-cloned" data-slick-index={-1} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                      <a  href={ StoryIdFeature3 }>
+                            <img  width={250} height={125} src={ImgF3} alt="gallery" />
+                    </a>
+                       
+                      </div>
+                      <div className="feature-news-content">
+                        <p>{TitleF3} </p>
+                      </div>
+                    </div>
+                  </div>
+        
+              
+             
+              {/* Active feature */}
+
+                  <div className="col-lg-4 slick-slide slick-cloned" data-slick-index={6} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                      <a  href={ StoryIdFeature1 }>
+                            <img  width={250} height={125} src={ImgF1} alt="gallery" />
+                    </a>
+                       
+                      </div>
+                      <div className="feature-news-content">
+                      <h6 className="title "><a href={ StoryIdFeature1 } >{TitleF1}</a></h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-4 slick-slide slick-cloned" data-slick-index={6} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                      <a  href={ StoryIdFeature2 }>
+                            <img  width={250} height={125} src={ImgF2} alt="gallery" />
+                    </a>
+                       
+                      </div>
+                      <div className="feature-news-content">
+                      <h6 className="title "><a href={ StoryIdFeature2 } >{TitleF2}</a></h6>
+                      </div>
+                    </div>
+                  </div>
+              
+            
+                  <div className="col-lg-4 slick-slide slick-cloned" data-slick-index={6} aria-hidden="true" tabIndex={-1} style={{width: '254px'}}>
+                    <div className="feature-news-item">
+                      <div className="feature-news-thumb">
+                      <a  href={ StoryIdFeature3 }>
+                            <img  width={250} height={125} src={ImgF3} alt="gallery" />
+                    </a>
+                       
+                      </div>
+                      <div className="feature-news-content">
+                      <h6 className="title "><a href={ StoryIdFeature3 } >{TitleF3}</a></h6>
+                      </div>
+                    </div>
+                  </div>
+                  
+          
+                  
+                  </div></div>
+            </div>
+          </div>
+          <div className="bussiness-box mt-40">
+            <div className="section-title">
+              <h3 className="title">Business News</h3>
+            </div>
+            <div className="bussiness-items">
+        
+              <div className="bussiness-post-item">
+                <div className="bussiness-post-thumb">
+                  
+
+
+                  <a  href={ B1StoryId }>
+                            <img  style={{ maxWidth: 300 ,maxHeight:250}} src={ImgB1} alt="gallery" />
+                    </a>
+                </div>
+                <div className="bussiness-post-content">
+                  <h3 className="title"><a href={ B1StoryId }>{TitleB1}</a></h3>
+                  <div className="meta-date-link">
+                  
+                 
+                  </div>
+                  <p>She tried for so many years and now she finally pregnant happy and things are going well &amp; it just happens that this pregnancy takes place with this epidemic…</p>
+                 
+                </div>
+              </div>
+              <div className="bussiness-post-item">
+                <div className="bussiness-post-thumb">
+                <a  href={ B22StoryId }>
+                            <img style={{ maxWidth: 300 ,maxHeight:250}} src={ImgB2} alt="gallery" />
+                    </a>
+                </div>
+                <div className="bussiness-post-content">
+                  <h3 className="title"><a href={ B22StoryId }>{TitleB2}</a></h3>
+                  <div className="meta-date-link">
+                   
+             
+                  </div>
+                  <p>She tried for so many years and now she finally pregnant happy and things are going well &amp; it just happens that this pregnancy takes place with this epidemic…</p>
+             
+                </div>
+              </div>
+              <div className="bussiness-post-item">
+                <div className="bussiness-post-thumb">
+                <a  href={ B3StoryId }>
+                            <img style={{ maxWidth: 300 ,maxHeight:250}}  src={ImgB3} alt="gallery" />
+                    </a>
+                </div>
+                <div className="bussiness-post-content">
+                  <h3 className="title"><a href={ B3StoryId }>{TitleB3}</a></h3>
+                  <div className="meta-date-link">
+                     
+                   
+                  </div>
+                  <p>She tried for so many years and now she finally pregnant happy and things are going well &amp; it just happens that this pregnancy takes place with this epidemic…</p>
+                
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        
+        <div className="col-lg-4">
+          <div className="all-post-sidebar-style-2 mt-40">
+          
+
+{/* START MOST VIEW  */}
+<MostViewed />
+
+{/* END MOST VIEW */}
+
+            <div className="ad mt-40">
+              <a href="#"><img src="./images/ad/ad-3.png" alt="" /></a>
+            </div>
+            <div className="finance-box mt-40">
+              <div className="section-title">
+                <h3 className="title">Finance</h3>
+              </div>
+              <div className="finance-items">
+             
+             
+                <div className="finance-item">
+                  <div className="finance-thumb">
+                   
+                    <a  href={ Finance1Id }>
+                    <img style={{ maxWidth: 300 ,maxHeight:250}} src={ImgFinance1} alt="gallery" />
+                    </a>
+
+
+
+                  </div>
+                  <div className="finance-content">
+                    <h3 className="title"><a href={ Finance1Id }>{TitleFinance1}</a></h3>
+                   
+           
+                  </div>
+                </div>
+                <div className="finance-item">
+                  <div className="finance-thumb">
+                  <a  href={ Finance2Id }>
+                    <img  style={{ maxWidth: 300 ,maxHeight:250}} src={ImgFinance2} alt="gallery" />
+                    </a>
+                    
+                  </div>
+                  <div className="finance-content">
+                    <h3 className="title"><a href={ Finance2Id }>{TitleFinance2}</a></h3>
+                 
+            
+                  </div>
+                </div>
+              </div>
+           
+            </div>
+
+            <div>
+            {/* ads */}
+              {/* <img className=' mt-3' src="./images/ad/ad-3.png" /> */}
+ 
+             </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        
+
+{/*Start  whats new and Videos */}
+ 
+<div className='row'>
+
+<div className="col-lg-4">
+        <div className="most-view-box mt-40">
+          <div className="section-title">
+            <h3 className="title">What’s new</h3>
+          </div>
+          <div className="trending-sidebar-slider slick-initialized slick-slider">
+          
+            <div className="slick-list draggable">
+              <div className="slick-track" style={{opacity: 1, width: '1500px', transform: 'translate3d(-600px, 0px, 0px)', transition: 'transform 1000ms ease 0s'}}><div className="post_gallery_items slick-slide slick-cloned" data-slick-index={-1} aria-hidden="true" tabIndex={-1} style={{width: '300px'}}>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                      
+                      <a  href={ WhatsID1 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW1} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID1 }  tabIndex={-1}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>category</a>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID2 }>
+                            <img  style={{ maxWidth: 100 ,maxHeight:100}}  src={ImgW2} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID2 }  tabIndex={-1}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID3 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW3} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID3 }  tabIndex={-1}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                 
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID4 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW4} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID4 }  tabIndex={-1}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID5 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW5} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID5 }  tabIndex={-1}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                   
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="post_gallery_items slick-slide" data-slick-index={0} aria-hidden="true" tabIndex={0} style={{width: '300px'}}>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID1 }>
+                            <img  src={ImgW1} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID1 }  tabIndex={0}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                      <img src={ImgW2} alt="gallery" />
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID2 }  tabIndex={0}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                        </div>
+                    
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                      <img src={ImgW3}alt="gallery" />
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID3 } tabIndex={0}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                      <img src={ImgW4} alt="gallery" />
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID4 }  tabIndex={0}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                      <img src={ImgW5} alt="gallery" />
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID5 }  tabIndex={0}>The city with highest quality of life in world.</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                
+                <div className="post_gallery_items slick-slide slick-current slick-active" data-slick-index={1} aria-hidden="false" tabIndex={-1} style={{width: '300px'}}>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID5}>
+                            <img  style={{ maxWidth: 100 ,maxHeight:80}} src={ImgW5} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID5 }  tabIndex={-1}>{TitleW5}</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID1 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:80}} src={ImgW1} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID1 }  tabIndex={-1}>{TitleW1}</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID2 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:80}} src={Img2} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID2 } tabIndex={-1}>{TitleW2}</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                     
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID3 }>
+                            <img style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW3} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID3 }  tabIndex={-1}>{TitleW3}</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                     
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="post-gallery-style-2">
+                    <div className="post-gallery-thumb">
+                    <a  href={ WhatsID4}>
+                            <img  style={{ maxWidth: 100 ,maxHeight:100}} src={ImgW4} alt="gallery" />
+                    </a>
+                    </div>
+                    <div className="post-gallery-content">
+                      <h5 className="title"><a href={ WhatsID4 } tabIndex={-1}>{TitleW4}</a></h5>
+                      <div className="meta-post-2-style">
+                        <div className="meta-post-categores">
+                          <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                        </div>
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div><div className="post_gallery_items slick-slide slick-cloned" data-slick-index={2} aria-hidden="true" tabIndex={-1} style={{width: '300px'}}>
+                  
+                  
+               
+             
+              
+                </div>
+                <div className="post_gallery_items slick-slide slick-cloned" data-slick-index={3} aria-hidden="true" tabIndex={-1} style={{width: '300px'}}>
+          
+      
+        
+         
+    
+                </div></div></div>
+            </div>
+        </div>
+      </div>
+
+
+<div className='col-8'>
+   <div className="container custom-container">
+        <div className="video-style-box mt-40">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-title">
+                <h3 className="title">Videos News</h3>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="video-play-item">
+                <div className="video-play-thumb">
+                   
+                  <a  href={ VideoID1 }>
+                            <img style={{ maxWidth: 500 ,maxHeight:250}} src={ImgV1} alt="gallery" />
+                    </a>
+                  <div className="play-btn">
+                    <a className="video-popup" href={ VideoID1 }><i className="fab fa-youtube" /></a>
+                  </div>
+                  <div className="share-item">
+                  
+                  </div>
+                  <div className="post-meta">
+                    <div className="meta-categories">
+                      <a href="#" tabIndex={0}>TECHNOLOGY</a>
+                    </div>
+              
+                  
+                  </div>
+                </div>
+                <div className="video-play-content">
+                  <h3 className="title"><a  href={ VideoID1 }>{TitleV1}</a></h3>
+               
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="video-play-sidebar-items">
+                <div className="post-gallery-style-2">
+                  <div className="post-gallery-thumb">
+                  <a  href={ VideoID2 }>
+                            <img  src={ImgV2} alt="gallery" />
+                    </a>
+                  </div>
+                  <div className="post-gallery-content">
+                    <h5 className="title"><a href={ VideoID2 } tabIndex={-1}>{TitleV2}</a></h5>
+                    <div className="meta-post-2-style">
+                      <div className="meta-post-categores">
+                        <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+                <div className="post-gallery-style-2">
+                  <div className="post-gallery-thumb">
+                  <a  href={ VideoID3 }>
+                            <img  src={ImgV3} alt="gallery" />
+                    </a>
+                  </div>
+                  <div className="post-gallery-content">
+                    <h5 className="title"><a href={ VideoID3 } tabIndex={-1}>{TitleV3}</a></h5>
+                    <div className="meta-post-2-style">
+                      <div className="meta-post-categores">
+                        <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                      </div>
+               
+                    </div>
+                  </div>
+                </div>
+                <div className="post-gallery-style-2">
+                  <div className="post-gallery-thumb">
+                  <a  href={ VideoID4}>
+                            <img  src={ImgV4} alt="gallery" />
+                    </a>
+                  </div>
+                  <div className="post-gallery-content">
+                    <h5 className="title"><a href={ VideoID4 } tabIndex={-1}>{TitleV4}</a></h5>
+                    <div className="meta-post-2-style">
+                      <div className="meta-post-categores">
+                        <a href="#" tabIndex={-1}>TECHNOLOGY</a>
+                      </div>
+                
+                    </div>
+                  </div>
+                </div>
+          
+           
+     
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+</div>
+{/* end videos section and whats new  */}
+
+<div className='row'>
+
+<div className='col-4'>
+<div>
+{/* ads in Opinion Section */}
+ 
+            </div>
+</div>
+<div className='col-4'>
+<div className="opinion-post mt-40">
+        <div className="section-title">
+          <h3 className="title">Opinion</h3>
+        </div>
+        <div className="opinion-post-item">
+          <div className="opinion-post-thumb">
+           
+            <a  href={ OpinionId1}>
+            <img src={ImgOpinion1} width={300} height={157} alt="" />
+                    </a>
+            <div className="circle-bar">
+              <div className="first circle"><canvas width={40} height={40} />
+             
+              </div>
+            </div>
+          </div>
+          <div className="opinion-post-content">
+            <h3 className="title"><a href={ OpinionId1 }>{TitleOpinion1}</a></h3>
+            <p>The property, complete with 30-seat screening from room, a 100-seat amphitheater and a swimming pond Your email address will not be this published. Required…</p>
+            <div className="meta-post-2-style">
+              <div className="meta-post-categores">
+                <a href="#">TECHNOLOGY</a>
+              </div>
+              <div className="meta-post-date">
+                <span>April 26, 2020</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div className='col-4'>
+<div className="opinion-post mt-40">
+        <div className="section-title">
+          <h3 className="title">Opinion</h3>
+        </div>
+        <div className="opinion-post-item">
+          <div className="opinion-post-thumb">
+          <a  href={ OpinionId2}>
+            <img src={ImgOpinion2} width={300} height={157} alt="" />
+                    </a>
+            <div className="circle-bar">
+              <div className="first circle"><canvas width={40} height={40} />
+               
+              </div>
+            </div>
+          </div>
+          <div className="opinion-post-content">
+            <h3 className="title"><a href={ OpinionId2 }>{TitleOpinion2}</a></h3>
+            <p>The property, complete with 30-seat screening from room, a 100-seat amphitheater and a swimming pond Your email address will not be this published. Required…</p>
+            <div className="meta-post-2-style">
+              <div className="meta-post-categores">
+                <a href="#">TECHNOLOGY</a>
+              </div>
+              <div className="meta-post-date">
+                <span>April 26, 2020</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+</div>
+
+        </div>
+ {/* end main container */}
+
+ </div>
+ {/* end main div background gray */}
+         </>
+        );
+    }
+
+
+  
